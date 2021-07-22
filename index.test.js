@@ -11,7 +11,6 @@ test('returns an arrays', () => {
 });
 
 test('returns a list of employees that only includes people over 18', () => {
-
     const expected = [];
 
     const result = sundayWorkers(employees).filter(employee => employee.age < 18);
@@ -23,6 +22,6 @@ test('Returns a list of employees in alphabetical order', () => {
     const expected = alphabetisedEmployees;
 
     const result = sundayWorkers(employees);
-
+    
     expect(result).toEqual(expected);
 });
