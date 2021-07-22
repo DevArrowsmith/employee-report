@@ -2,12 +2,12 @@ const { employees, alphabetisedEmployees } = require('./mockData');
 const sundayWorkers = require('./index');
 const { test, expect } = require('@jest/globals');
 
-test('returns an arrays', () => {
-    const expected = true;
+test('returns an array', () => {
+    const isArray = true;
 
     const result = Array.isArray(sundayWorkers(employees));
 
-    expect(result).toEqual(expected);
+    expect(result).toEqual(isArray);
 });
 
 test('returns a list of employees that only includes people over 18', () => {
@@ -22,6 +22,6 @@ test('Returns a list of employees in alphabetical order', () => {
     const expected = alphabetisedEmployees;
 
     const result = sundayWorkers(employees);
-    
+
     expect(result).toEqual(expected);
 });
