@@ -1,16 +1,16 @@
-const orgainseEmployees = (allEmployees) => {
+const orgainseEmployees = (allEmployees, order) => {
     const employeesOver18 = allEmployees.filter(person => person.age > 17);
 
-    const alphabetisedEmployees = employeesOver18.sort((a, b) => a.name.charCodeAt(0) - b.name.charCodeAt(0));
-
-    const upperCaseEmployees = alphabetisedEmployees.map(employee =>  {
+    const upperCaseEmployees = employeesOver18.map(employee =>  {
         let newEmployee = {...employee, name: employee.name.toUpperCase()};
         return newEmployee;
     });
+
+    const alphabetisedEmployees = order === "descending" 
+    ? upperCaseEmployees.sort((a, b) => a.name.charCodeAt(0) + b.name.charCodeAt(0))
+    : upperCaseEmployees.sort((a, b) => a.name.charCodeAt(0) - b.name.charCodeAt(0));
     
-    return upperCaseEmployees;
+    return alphabetisedEmployees;
 };
 
 module.exports = orgainseEmployees;
-
-

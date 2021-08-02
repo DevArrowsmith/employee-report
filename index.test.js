@@ -24,10 +24,18 @@ test('returns a list of employees that only includes people over 18', () => {
     expect(employeesUnder18).toEqual(emptyArray);
 });
 
-test('Returns a list of employees in alphabetical order', () => {
+test('Returns a list of employees in ascending alphabetical order when not passed the secondary argument string "descending"', () => {
     const alphabetisedEmployees = [...organisedEmployees].sort((a, b) => a.name.charCodeAt(0) - b.name.charCodeAt(0));
 
     expect(alphabetisedEmployees).toEqual(organisedEmployees);
+});
+
+test('Returns a list of employees in descending alphabetical order when passed the secondary argument string "descending"', () => {
+    const descendingOrganisedEmployees = organiseEmployees(employees, "descending")
+
+    const descendingAlphabetisedEmployees = [...descendingOrganisedEmployees].sort((a, b) => a.name.charCodeAt(0) + b.name.charCodeAt(0));
+
+    expect(descendingAlphabetisedEmployees).toEqual(descendingOrganisedEmployees);
 });
 
 test('Returns a list of employees with capitalised names', () => {
