@@ -1,4 +1,4 @@
-const { employees, alphabetisedEmployees } = require('./mockData');
+const { employees } = require('./mockData');
 const organiseEmployees = require('./index');
 const { test, expect } = require('@jest/globals');
 
