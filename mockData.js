@@ -6,16 +6,4 @@ const employees = [
     { name: 'Mike', age: 51 },
 ];
 
-const filteredEmployees = [
-    { name: 'Sepp', age: 18 },
-    { name: 'Angelo', age: 23},
-    { name: 'Mike', age: 51 },
-];
-
-const alphabetisedEmployees = [
-    { name: 'Angelo', age: 23},
-    { name: 'Mike', age: 51 },
-    { name: 'Sepp', age: 18 },
-];
-
-module.exports = { employees, filteredEmployees, alphabetisedEmployees };
+module.exports = { employees };

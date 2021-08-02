@@ -1,27 +1,39 @@
 const { employees, alphabetisedEmployees } = require('./mockData');
-const sundayWorkers = require('./index');
+const organiseEmployees = require('./index');
 const { test, expect } = require('@jest/globals');
+
+let organisedEmployees;
+
+beforeEach(() => {
+    organisedEmployees = organiseEmployees(employees);
+});
 
 test('returns an array', () => {
     const isArray = true;
-
-    const result = Array.isArray(sundayWorkers(employees));
+    
+    const result = Array.isArray(organisedEmployees);
 
     expect(result).toEqual(isArray);
 });
 
 test('returns a list of employees that only includes people over 18', () => {
-    const expected = [];
+    const emptyArray = [];
 
-    const result = sundayWorkers(employees).filter(employee => employee.age < 18);
+    const employeesUnder18 = organisedEmployees.filter(employee => employee.age < 18);
 
-    expect(result).toEqual(expected);
+    expect(employeesUnder18).toEqual(emptyArray);
 });
 
 test('Returns a list of employees in alphabetical order', () => {
-    const expected = alphabetisedEmployees;
+    const alphabetisedEmployees = [...organisedEmployees].sort((a, b) => a.name.charCodeAt(0) - b.name.charCodeAt(0));
 
-    const result = sundayWorkers(employees);
+    expect(alphabetisedEmployees).toEqual(organisedEmployees);
+});
 
-    expect(result).toEqual(expected);
+test('Returns a list of employees with capitalised names', () => {
+    const checkIfUppercase = employees => {
+        return !employees.map(employee => employee.name.toUpperCase() === employee.name).includes(false);
+    };
+
+    expect(checkIfUppercase(organisedEmployees)).toBe(true);
 });
