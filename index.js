@@ -1,3 +1,5 @@
+const { employees } = require("./mockData");
+
 const orgainseEmployees = (allEmployees, order) => {
     const employeesOver18 = allEmployees.filter(person => person.age > 17);
 
@@ -7,7 +9,7 @@ const orgainseEmployees = (allEmployees, order) => {
     });
 
     const alphabetisedEmployees = order === "descending" 
-    ? upperCaseEmployees.sort((a, b) => a.name.charCodeAt(0) + b.name.charCodeAt(0))
+    ? upperCaseEmployees.sort((a, b) => b.name.charCodeAt(0) - a.name.charCodeAt(0))
     : upperCaseEmployees.sort((a, b) => a.name.charCodeAt(0) - b.name.charCodeAt(0));
     
     return alphabetisedEmployees;

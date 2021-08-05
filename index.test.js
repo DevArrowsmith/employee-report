@@ -1,47 +1,52 @@
-const { employees } = require('./mockData');
+const {
+    over18MockData,
+    resultOver18,
+    capitaliseMockData,
+    resultCapitalise,
+    alphabetiseMockData,
+    resultAlphabetiseAscending,
+    resultAlphabetiseDescending,
+ } = require('./mockData');
+
 const organiseEmployees = require('./index');
 const { test, expect } = require('@jest/globals');
 
-let organisedEmployees;
+test('returns an array when passed an array', () => {
+    const expected = [];
 
-beforeEach(() => {
-    organisedEmployees = organiseEmployees(employees);
-});
+    const result = organiseEmployees([]);
 
-test('returns an array', () => {
-    const isArray = true;
-    
-    const result = Array.isArray(organisedEmployees);
-
-    expect(result).toEqual(isArray);
+    expect(result).toEqual(expected);
 });
 
 test('returns a list of employees that only includes people over 18', () => {
-    const emptyArray = [];
+    const expected = resultOver18;
 
-    const employeesUnder18 = organisedEmployees.filter(employee => employee.age < 18);
+    const result = organiseEmployees(over18MockData);
 
-    expect(employeesUnder18).toEqual(emptyArray);
-});
-
-test('Returns a list of employees in ascending alphabetical order when not passed the secondary argument string "descending"', () => {
-    const alphabetisedEmployees = [...organisedEmployees].sort((a, b) => a.name.charCodeAt(0) - b.name.charCodeAt(0));
-
-    expect(alphabetisedEmployees).toEqual(organisedEmployees);
-});
-
-test('Returns a list of employees in descending alphabetical order when passed the secondary argument string "descending"', () => {
-    const descendingOrganisedEmployees = organiseEmployees(employees, "descending")
-
-    const descendingAlphabetisedEmployees = [...descendingOrganisedEmployees].sort((a, b) => a.name.charCodeAt(0) + b.name.charCodeAt(0));
-
-    expect(descendingAlphabetisedEmployees).toEqual(descendingOrganisedEmployees);
+    expect(result).toEqual(expected);
 });
 
 test('Returns a list of employees with capitalised names', () => {
-    const checkIfUppercase = employees => {
-        return !employees.map(employee => employee.name.toUpperCase() === employee.name).includes(false);
-    };
+    const expected = resultCapitalise;
 
-    expect(checkIfUppercase(organisedEmployees)).toBe(true);
+    const result = organiseEmployees(capitaliseMockData);
+
+    expect(result).toEqual(expected);
+});
+
+test('Returns a list of employees in ascending alphabetical order when not passed the secondary argument string "descending"', () => {
+    const expected = resultAlphabetiseAscending;
+
+    const result = organiseEmployees(alphabetiseMockData);
+
+    expect(result).toEqual(expected);
+});
+
+test('Returns a list of employees in descending alphabetical order when passed the secondary argument string "descending"', () => {
+    const expected = resultAlphabetiseDescending;
+
+    const result = organiseEmployees(alphabetiseMockData, "descending")
+
+    expect(result).toEqual(expected);
 });
